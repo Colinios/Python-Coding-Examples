@@ -8,11 +8,9 @@ x_1 = 0.5 # input 1
 x_2 = 0.85 # input 2
 print('x1 is {} and x2 is {}'.format(x_1, x_2))
 
-#Computing the wighted sum of the inputs, 𝑧1,1, at the first node of the hidden layer
 z_11 = x_1 * weights[0] + x_2 * weights[1] + biases[0]
 print('The weighted sum of the inputs at the first node in the hidden layer is {}'.format(z_11))
 
-#Computing the weighted sum of the inputs, 𝑧1,2, at the second node of the hidden layer
 z_12 = x_1 * weights[2] + x_2 * weights[3] + biases[1]
 print('The weighted sum of the inputs at the second node in the hidden layer is {}'.format(np.around(z_12, decimals=4)))
 
@@ -20,15 +18,15 @@ print('The weighted sum of the inputs at the second node in the hidden layer is 
 a_11 = 1.0 / (1.0 + np.exp(-z_11))
 a_12 = 1.0 / (1.0 + np.exp(-z_12))
 
-#Activations serve as the inputs to the output layer
+#Activations to serve as the inputs to the output layer
 z_2 = a_11 * weights[4] + a_12 * weights[5] + biases[2]
 a_2 = 1.0 / (1.0 + np.exp(-z_2))
 print('The output of the network for x1 = 0.5 and x2 = 0.85 is {}'.format(np.around(a_2, decimals=4)))
 
 
 
-# Initialize a network
-n = 2 # number of inputs
+# Initializing a network
+n = 2
 num_hidden_layers = 2
 m = [2, 2] # number of nodes in each hidden layer
 num_nodes_output = 1
@@ -39,12 +37,12 @@ def initialize_network(num_inputs, num_hidden_layers, num_nodes_hidden, num_node
     # looping through each layer and randomly initializing the weights and biases associated with each layer
     for layer in range(num_hidden_layers + 1):
         if layer == num_hidden_layers:
-            layer_name = 'output' # name last layer in the network output
+            layer_name = 'output' 
             num_nodes = num_nodes_output
         else:
-            layer_name = 'layer_{}'.format(layer + 1) # otherwise give the layer a number
+            layer_name = 'layer_{}'.format(layer + 1) 
             num_nodes = num_nodes_hidden[layer] 
-        # initialize weights and bias for each node
+        # initializing weights and bias for each node
         network[layer_name] = {}
         for node in range(num_nodes):
             node_name = 'node_{}'.format(node+1)
@@ -65,7 +63,7 @@ inputs = np.around(np.random.uniform(size=5), decimals=2)
 print('The inputs to the network are {}'.format(inputs))
 
 
-#Compute node activation
+#Node activation
 def node_activation(weighted_sum):
     return 1.0 / (1.0 + np.exp(-1 * weighted_sum))
 
